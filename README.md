@@ -1,73 +1,48 @@
-# Backup and Restore Script
-This project provides a simple yet powerful Bash script for backing up and restoring directories with encryption. The script allows you to:
-* Backup: Compress and encrypt directories/files into a .tgz.gpg archive.
-* Restore: Decrypt and extract the backup to a specified directory.
-* Automation: Automate backups using a cron job.
+## 💾 BACKUP AND RESTORE SCRIPT
+Bash | GPG Encryption | Cron Automation                        
+A robust solution for directory backups with encryption
+and automated scheduling capabilities.
 
-## Features
-* Validation: Ensures that the source and destination directories are valid and not the same.
-* Encryption: Uses GPG for encrypting backup files.
-* Cron Job: Automates the backup process to run every hour.
-* Logging: Logs backup operations for future reference.
+## 🚀 KEY FEATURES
+✔ Secure encryption using GPG (AES-256)                    
+✔ Validation for source/destination paths                           
+✔ Hourly automated backups via cron                            
+✔ Detailed operation logging                           
+✔ Simple restore functionality                              
 
-## Prerequisites
-* Bash: The script is written in Bash, so ensure you have a Bash shell available.
-* GPG: GNU Privacy Guard (GPG) is required for encryption/decryption.
-* Cron: For automated backups, ensure cron is installed and running.
+## 🛠️ PREREQUISITES
+$ sudo apt-get install gnupg cron  # Debian/Ubuntu                             
+$ brew install gnupg               # macOS                                     
 
-## Usage
-### Backup
-Run the Backup Script:
-```
-./backup.sh
-```
-Input Parameters:
-* Source Directory: The directory you want to back up.
-* Destination Directory: The directory where the backup will be stored.
-* Encryption Key: The key used to encrypt the backup.
 
-Example:
-```
-/path/to/source /path/to/destination my_encryption_key
-```
+## 🧠 USAGE EXAMPLES
 
-### Restore
-Run the Restore Script:
-```
-./restore.sh
-```
+1. Backup command:
+$ ./backup.sh                          
+>> Enter source:      /path/to/source                               
+>> Enter destination: /path/to/backups                                      
+>> Encryption key:    my_secure_key123                                     
 
-Input Parameters:
-* Backup Directory: The directory containing the backup files.
-* Restore Directory: The directory where the backup will be restored.
-* Decryption Key: The key used to decrypt the backup.
+2. Restore command: 
+$ ./restore.sh                                
+>> Backup file:      /path/to/backups/backup_20231115.tgz.gpg                         
+>> Restore location: /path/to/restore                      
+>> Decryption key:   my_secure_key123                    
 
-Example:
-```
-/path/to/backup /path/to/restore my_decryption_key
-```
+## ⚙️ AUTOMATION
+1. View active cron jobs:
+$ crontab -l
 
-## Automation
-The backup script automatically adds a cron job to run every hour. You can view or edit the cron job using:
-```
-crontab -e
-```
+2. Edit automation schedule:
+$ crontab -e                             
+Add this line for hourly backups:                       
+0 * * * * /path/to/backup.sh /source /backups encryption_key                                
 
-## Files
-* backup_restore.sh: Contains the core functions for backup and restore operations.
-* backup.sh: Script to initiate the backup process.
-* restore.sh: Script to initiate the restore process.
-  
----
-
-## Example
-### Backup Example
-```
-./backup.sh
-/path/to/source /path/to/destination my_encryption_key
-```
-### Restore Example
-```
-./restore.sh
-/path/to/backup /path/to/restore my_decryption_key
-```
+## 📂 PROJECT STRUCTURE
+backup-system/                     
+├── backup_restore.sh    # Core functions                       
+├── backup.sh           # Backup interface                           
+├── restore.sh          # Restore interface                             
+├── logs/               # Operation logs                    
+│   └── backup_20231115.log                         
+└── README              # This file                               
